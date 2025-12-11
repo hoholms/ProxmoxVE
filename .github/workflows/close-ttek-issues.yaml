@@ -22,12 +22,12 @@ jobs:
 
             This repository is no longer used for active scripts.
             **Please update your bookmarks** and use: [https://helper-scripts.com](https://helper-scripts.com)
-                    
+
             Also make sure your Bash command starts with:
             \`\`\`bash
-            bash <(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/ct/...)
+            bash <(curl -fsSL https://raw.githubusercontent.com/hoholms/ProxmoxVE/refs/heads/feature/loki/ct/...)
             \`\`\`
-            
+
             This issue is being closed automatically.`;
 
               await github.rest.issues.createComment({

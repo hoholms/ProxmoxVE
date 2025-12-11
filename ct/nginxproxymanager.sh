@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-source <(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/build.func)
+source <(curl -fsSL https://raw.githubusercontent.com/hoholms/ProxmoxVE/refs/heads/feature/loki/misc/build.func)
 # Copyright (c) 2021-2025 Community-Script ORG
 # Author: tteck (tteckster) | Co-Author: CrazyWolf13
 # License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
@@ -55,7 +55,7 @@ function update_script() {
 
   RELEASE="2.13.4"
   CLEAN_INSTALL=1 fetch_and_deploy_gh_release "nginxproxymanager" "NginxProxyManager/nginx-proxy-manager" "tarball" "v${RELEASE}" "/opt/nginxproxymanager"
-  
+
   msg_info "Stopping Services"
   systemctl stop openresty
   systemctl stop npm

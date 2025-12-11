@@ -7,6 +7,7 @@ Complete guide for automated, zero-interaction container deployments using commu
 ## 🎯 What You'll Learn
 
 This comprehensive guide covers:
+
 - ✅ Complete automation of container deployments
 - ✅ Zero-interaction installations
 - ✅ Batch deployments (multiple containers)
@@ -35,6 +36,7 @@ This comprehensive guide covers:
 ## Overview
 
 Unattended deployments allow you to:
+
 - ✅ Deploy containers without manual interaction
 - ✅ Automate infrastructure provisioning
 - ✅ Integrate with CI/CD pipelines
@@ -46,6 +48,7 @@ Unattended deployments allow you to:
 ## Prerequisites
 
 ### 1. Proxmox VE Access
+
 ```bash
 # Verify you have root access
 whoami  # Should return: root
@@ -55,6 +58,7 @@ pveversion
 ```
 
 ### 2. Network Connectivity
+
 ```bash
 # Test GitHub access
 curl -I https://raw.githubusercontent.com/community-scripts/ProxmoxVED/main/ct/debian.sh
@@ -64,6 +68,7 @@ ping -c 1 1.1.1.1
 ```
 
 ### 3. Storage Available
+
 ```bash
 # List available storage
 pvesm status
@@ -78,13 +83,13 @@ df -h
 
 ### Method Comparison
 
-| Method | Use Case | Complexity | Flexibility |
-|--------|----------|------------|-------------|
-| **Environment Variables** | Quick one-offs | Low | High |
-| **App Defaults** | Repeat deployments | Low | Medium |
-| **Shell Scripts** | Batch operations | Medium | High |
-| **Ansible** | Infrastructure as Code | High | Very High |
-| **Terraform** | Cloud-native IaC | High | Very High |
+| Method                    | Use Case               | Complexity | Flexibility |
+| ------------------------- | ---------------------- | ---------- | ----------- |
+| **Environment Variables** | Quick one-offs         | Low        | High        |
+| **App Defaults**          | Repeat deployments     | Low        | Medium      |
+| **Shell Scripts**         | Batch operations       | Medium     | High        |
+| **Ansible**               | Infrastructure as Code | High       | Very High   |
+| **Terraform**             | Cloud-native IaC       | High       | Very High   |
 
 ---
 
@@ -93,8 +98,9 @@ df -h
 ### Basic Unattended Deployment
 
 **Simplest form:**
+
 ```bash
-var_hostname=myserver bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/ct/debian.sh)"
+var_hostname=myserver bash -c "$(curl -fsSL https://raw.githubusercontent.com/hoholms/ProxmoxVE/refs/heads/feature/loki/ct/debian.sh)"
 ```
 
 ### Complete Configuration Example
@@ -125,12 +131,14 @@ echo "✓ Container deployed successfully"
 ### Using App Defaults
 
 **Step 1: Create defaults once (interactive)**
+
 ```bash
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVED/main/ct/pihole.sh)"
 # Select "Advanced Settings" → Configure → Save as "App Defaults"
 ```
 
 **Step 2: Deploy unattended (uses saved defaults)**
+
 ```bash
 #!/bin/bash
 # deploy-with-defaults.sh
@@ -325,7 +333,7 @@ echo "All deployments complete!"
       file:
         path: /usr/local/community-scripts/defaults
         state: directory
-        mode: '0755'
+        mode: "0755"
 
     - name: Deploy containers
       shell: |
@@ -357,6 +365,7 @@ echo "All deployments complete!"
 ```
 
 Run with:
+
 ```bash
 ansible-playbook -i inventory.ini advanced-playbook.yml
 ```
@@ -445,7 +454,7 @@ on:
   workflow_dispatch:
     inputs:
       container_type:
-        description: 'Container type to deploy'
+        description: "Container type to deploy"
         required: true
         type: choice
         options:
@@ -922,6 +931,7 @@ main "$@"
 ```
 
 **Example config file (deployment-config.json):**
+
 ```json
 {
   "containers": [

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-source <(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/build.func)
+source <(curl -fsSL https://raw.githubusercontent.com/hoholms/ProxmoxVE/refs/heads/feature/loki/misc/build.func)
 # Copyright (c) 2021-2025 community-scripts ORG
 # Author: omernaveedxyz
 # License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
@@ -34,7 +34,7 @@ function update_script() {
   msg_ok "Service Stopped"
 
   fetch_and_deploy_gh_release "miniflux" "miniflux/v2" "binary" "latest"
-  
+
   msg_info "Updating Miniflux"
   $STD miniflux -migrate -config-file /etc/miniflux.conf
   msg_ok "Updated Miniflux"
